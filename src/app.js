@@ -53,21 +53,23 @@ const contactsList = [{
 const allContact = document.querySelector("#display_all_contacts")
 allContact.addEventListener('click', test)
 
-function test() {
-    console.log('hello')
+function test(evt) {
+    if (evt.target.tagName == '#div') {
+        console.log('hello')
+    }
 }
 
 
 function loadContacts() {
+    document.querySelector("#display_single_contact").remove()
 
-    const lengthNum = Object.keys(contactsList).length
-    let i = 0
 
-    while (i < lengthNum + 1) {
-        console.log(contactsList[i])
+    for (contact of contactsList) {
+        console.log(contact)
         allContact.insertAdjacentHTML("beforeend",
-            `<div id=individual_contact>${contactsList[i].name}</div>`)
-        i += 1
+            `<div class="contact" id=${contact.ID}>
+            <img src="img/${contact.image}" <p>${contact.name}</p>
+            </div>`)
 
     }
 }
