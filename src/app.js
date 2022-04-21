@@ -53,30 +53,38 @@ const contactsList = [{
 const allContact = document.querySelector("#display_all_contacts")
 allContact.addEventListener('click', onContactClick)
 
+const singleContact = document.querySelector("#display_single_contact")
+singleContact.addEventListener('click', returnToStart)
+
 function onContactClick(evt) {
     const targetDiv = evt.target.closest("div")
     const id = targetDiv.id
     if (id) {
         showContact(contactsList[id])
     }
-
-
 }
 
 function loadContacts() {
-    document.querySelector("#display_single_contact").remove()
+    document.querySelector("#display_single_contact").setAttribute("style", "display: None;")
     for (contact of contactsList) {
         console.log(contact)
         allContact.insertAdjacentHTML("beforeend",
-            `<div class="contact" id=${contact.ID}>
+            `<div class="display_all_contacts" id=${contact.ID}>
             <img src="img/${contact.image}" <p>${contact.name}</p>
             </div>`)
 
     }
 }
 
-function showContact(id) {
-    console.log('working')
+function showContact(contact) {
+    document.querySelector("#display_all_contacts").setAttribute("style", "display: None;")
+    document.querySelector("#display_single_contact").setAttribute("style", "display: flex;")
+    singleContact.insertAdjacentHTML("beforeend",
+        `<div class="individual_contact" id=${contact.ID}><img src="img/${contact.image}"<p>${contact.name}</p></div>`)
+}
+
+function returnToStart() {
+    console.log('ok')
 }
 
 loadContacts()
