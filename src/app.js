@@ -51,19 +51,20 @@ const contactsList = [{
 ]
 
 const allContact = document.querySelector("#display_all_contacts")
-allContact.addEventListener('click', test)
+allContact.addEventListener('click', onContactClick)
 
-function test(evt) {
-    if (evt.target.tagName == '#div') {
-        console.log('hello')
+function onContactClick(evt) {
+    const targetDiv = evt.target.closest("div")
+    const id = targetDiv.id
+    if (id) {
+        showContact(contactsList[id])
     }
-}
 
+
+}
 
 function loadContacts() {
     document.querySelector("#display_single_contact").remove()
-
-
     for (contact of contactsList) {
         console.log(contact)
         allContact.insertAdjacentHTML("beforeend",
@@ -72,6 +73,10 @@ function loadContacts() {
             </div>`)
 
     }
+}
+
+function showContact(id) {
+    console.log('working')
 }
 
 loadContacts()
